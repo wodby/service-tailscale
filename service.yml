@@ -15,7 +15,7 @@ labels:
 links:
 - name: service
   title: Service to serve
-  required: true
+  required: false
   helm:
     - name: serve.proxyService
       value: '{{link.service.name}}'
