@@ -26,7 +26,7 @@ links:
     - name: serve.namespace
       value: '{{link.instance.namespace}}'  
   selectors:
-  - labels: []
+  - type: any
 
 integrations:
 - name: tailscale
