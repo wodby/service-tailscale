@@ -17,10 +17,14 @@ links:
   title: Service to serve
   required: false
   helm:
-    - name: serve.proxyService
+    - name: serve.host
       value: '{{link.service.name}}'
-    - name: serve.proxyPort
-      value: '{{link.service.mainPort}}'  
+    - name: serve.port
+      value: '{{link.service.mainPort.number}}'  
+    - name: serve.protocol
+      value: '{{link.service.mainPort.protocol}}'  
+    - name: serve.namespace
+      value: '{{link.instance.namespace}}'  
 
 integrations:
 - name: tailscale
@@ -60,5 +64,3 @@ helm:
   values:
     - name: authKey
       value: '{{integrations.tailscale.key}}'
-    - name: serve.proxyNamespace
-      value: '{{instance.namespace}}'
