@@ -12,6 +12,16 @@ options:
 labels:
   - openclaw
 
+links:
+- name: service
+  title: Service to serve
+  required: true
+  helm:
+    - name: serve.proxyService
+      value: '{{link.service.name}}'
+    - name: serve.proxyPort
+      value: '{{link.service.mainPort}}'  
+
 integrations:
 - name: tailscale
   title: Tailscale
@@ -50,11 +60,5 @@ helm:
   values:
     - name: authKey
       value: '{{integrations.tailscale.key}}'
-    - name: serve.proxyService
-      value: '{{linked.service.name}}'
     - name: serve.proxyNamespace
-      value: '{{instance.namespace}}'      
-    - name: serve.proxyPort
-      value: '{{linked.service.mainPort}}'
-
-      
+      value: '{{instance.namespace}}'
