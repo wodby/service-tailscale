@@ -26,8 +26,7 @@ links:
     - name: serve.namespace
       value: '{{link.instance.namespace}}'  
   selectors:
-  - conditions:
-    - hasTCPPorts
+  - labels: []
 
 integrations:
 - name: tailscale
