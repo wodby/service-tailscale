@@ -13,7 +13,7 @@ labels:
   - openclaw
 
 links:
-- name: service
+- name: serve
   title: Service to serve
   required: false
   helm:
