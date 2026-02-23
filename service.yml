@@ -1,0 +1,60 @@
+name: tailscale
+icon: tailscale
+type: service
+title: Tailscale
+hostname: tailscale
+containers:
+  - name: tailscale
+    image: tailscale/tailscale
+options:
+  - version: 'stable'
+    tag: 'stable'
+labels:
+  - openclaw
+
+integrations:
+- name: tailscale
+  title: Tailscale
+  type: vpn
+  required: true
+  multiple: false
+  labels:
+  - tailscale
+
+volumes:
+- name: state
+  title: State
+  size: 1
+  optional: false
+  helm: 
+    labels: persistence.labels    
+    values:
+    - name: persistence.enabled
+      value: true
+    - name: persistence.size
+      value: '{{volumes.state.size}}Gi'
+
+helm:
+  name: wodby
+  source: oci://registry-1.docker.io/wodby/tailscale
+  chart: oci://registry-1.docker.io/wodby/tailscale
+  version: 0.1.0
+  configurations:
+    - name: tailscale
+      labels: podLabels
+      annotations: podAnnotations
+      env: envVars
+      resources: resources
+      volumes: volumes
+      mounts: volumeMounts
+  values:
+    - name: authKey
+      value: '{{integrations.tailscale.key}}'
+    - name: serve.proxyService
+      value: '{{linked.service.name}}'
+    - name: serve.proxyNamespace
+      value: '{{instance.namespace}}'      
+    - name: serve.proxyPort
+      value: '{{linked.service.mainPort}}'
+
+      
