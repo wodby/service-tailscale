@@ -69,8 +69,6 @@ helm:
       mounts: volumeMounts
   values:
     - name: authKey
-      value: '{{integrations.tailscale.key}}'
-    - name: tsExtraTags
-      value: '--advertise-tags=tag:wodby'
+      value: '{{integrations.tailscale.key}}'    
     - name: tsHostname
       value: '{{links.serve.service.fqdnPrefix}}'
