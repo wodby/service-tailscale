@@ -25,6 +25,12 @@ links:
       value: '{{link.service.mainPort.protocol}}'  
     - name: serve.namespace
       value: '{{link.instance.namespace}}'  
+  selectors:
+  - type: service
+  - type: db
+  - type: search
+  - type: datastore
+  - type: proxy
 
 integrations:
 - name: tailscale
