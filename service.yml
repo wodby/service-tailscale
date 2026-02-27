@@ -30,7 +30,7 @@ links:
   - type: db
   - type: search
   - type: datastore
-  - type: proxy
+
 
 integrations:
 - name: tailscale
