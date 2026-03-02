@@ -7,8 +7,8 @@ containers:
   - name: tailscale
     image: tailscale/tailscale
 options:
-  - version: '1.94'
-    tag: 'v1.94'
+  - version: 'stable'
+    tag: 'stable'
 labels:
   - openclaw
 
