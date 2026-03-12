@@ -60,7 +60,7 @@ helm:
   chart: oci://registry-1.docker.io/wodby/tailscale
   version: 0.1.0
   configurations:
-    - name: tailscale
+    - container: tailscale
       labels: podLabels
       annotations: podAnnotations
       env: envVars
