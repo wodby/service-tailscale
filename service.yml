@@ -2,7 +2,6 @@ name: tailscale
 icon: tailscale
 type: vpn
 title: Tailscale
-hostname: tailscale
 containers:
   - name: tailscale
     image: tailscale/tailscale
