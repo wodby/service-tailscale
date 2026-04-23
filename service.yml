@@ -2,28 +2,25 @@ name: tailscale
 icon: tailscale
 type: vpn
 title: Tailscale
-containers:
-  - name: tailscale
-    image: tailscale/tailscale
 options:
-  - version: '1.94'
-    tag: 'v1.94.2'
+- version: '1.94'
+  tag: 'v1.94.2'
 labels:
-  - openclaw
+- openclaw
 
 links:
 - name: serve
   title: Service to serve
   required: false
   helm:
-    - name: serve.host
-      value: '{{link.service.name}}'
-    - name: serve.port
-      value: '{{link.service.mainPort.number}}'  
-    - name: serve.protocol
-      value: '{{link.service.mainPort.protocol}}'  
-    - name: serve.namespace
-      value: '{{link.instance.namespace}}'  
+  - name: serve.host
+    value: '{{link.service.name}}'
+  - name: serve.port
+    value: '{{link.service.mainPort.number}}'
+  - name: serve.protocol
+    value: '{{link.service.mainPort.protocol}}'
+  - name: serve.namespace
+    value: '{{link.instance.namespace}}'
   selectors:
   - type: service
   - type: db
@@ -45,8 +42,8 @@ volumes:
   title: State
   size: 1
   optional: false
-  helm: 
-    labels: persistence.labels    
+  helm:
+    labels: persistence.labels
     values:
     - name: persistence.enabled
       value: true
@@ -58,16 +55,23 @@ helm:
   source: oci://registry-1.docker.io/wodby/tailscale
   chart: oci://registry-1.docker.io/wodby/tailscale
   version: 0.1.0
-  configurations:
-    - container: tailscale
-      labels: podLabels
-      annotations: podAnnotations
-      env: envVars
-      resources: resources
-      volumes: extraVolumes
-      mounts: extraVolumeMounts
   values:
-    - name: authKey
-      value: '{{integrations.tailscale.key}}'    
-    - name: tsHostname
-      value: '{{links.serve.service.fqdnPrefix}}'
+  - name: authKey
+    value: '{{integrations.tailscale.key}}'
+  - name: tsHostname
+    value: '{{links.serve.service.fqdnPrefix}}'
+workloads:
+- id: main
+  kind: statefulset
+  primary: true
+  containers:
+  - name: tailscale
+    image: tailscale/tailscale
+    helm:
+      resources: resources
+      env: envVars
+      mounts: extraVolumeMounts
+  helm:
+    labels: podLabels
+    annotations: podAnnotations
+    volumes: extraVolumes
