@@ -60,10 +60,15 @@ helm:
     value: '{{integrations.tailscale.key}}'
   - name: tsHostname
     value: '{{links.serve.service.fqdnPrefix}}'
+
 workloads:
 - id: main
   kind: statefulset
   primary: true
+  helm:
+    labels: podLabels
+    annotations: podAnnotations
+    volumes: extraVolumes
   containers:
   - name: tailscale
     image: tailscale/tailscale
@@ -71,7 +76,3 @@ workloads:
       resources: resources
       env: envVars
       mounts: extraVolumeMounts
-  helm:
-    labels: podLabels
-    annotations: podAnnotations
-    volumes: extraVolumes
