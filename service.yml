@@ -49,6 +49,8 @@ volumes:
       value: true
     - name: persistence.size
       value: '{{volumes.state.size}}Gi'
+    - name: persistence.storageClass
+      value: '{{volumes.state.storageClassName}}'
 
 helm:
   name: wodby
