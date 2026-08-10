@@ -5,6 +5,7 @@ Connect Kubernetes applications through Tailscale with Wodby.
 This repository defines the Wodby service manifests and operational
 configuration for Tailscale.
 
+- [Tailscale service on Wodby](https://wodby.com/services/tailscale)
 - [Browse Wodby services](https://wodby.com/services)
 - [Wodby service documentation](https://wodby.com/docs/2.0/services/)
 - [Service manifest reference](https://wodby.com/docs/2.0/services/template/)
@@ -21,12 +22,13 @@ configuration for Tailscale.
 | Service name | `tailscale` |
 | Type | Application service |
 | Versions | `1.94` by default |
-| Workloads | `main` (StatefulSet), primary |
+| Workloads | `main` (Statefulset, primary) |
 | Containers | `tailscale` using `tailscale/tailscale` |
+| Endpoints | None |
 | Service links | Service to serve (`serve`), optional |
-| Volumes | State, 1 GB |
+| Application build | Not buildable from application source |
 | Helm | chart `oci://registry-1.docker.io/wodby/tailscale`; version `0.1.0` |
-| Configuration | 1 integration slots |
+| Configuration and operations | 1 integration slots, 1 volumes |
 
 ## Use this service
 
