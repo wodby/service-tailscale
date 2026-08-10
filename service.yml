@@ -1,6 +1,6 @@
 name: tailscale
 icon: tailscale
-type: vpn
+type: service
 title: Tailscale
 options:
 - version: '1.94'

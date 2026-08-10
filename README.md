@@ -19,7 +19,7 @@ configuration for Tailscale.
 | Property | Manifest configuration |
 | --- | --- |
 | Service name | `tailscale` |
-| Type | VPN service |
+| Type | Application service |
 | Versions | `1.94` by default |
 | Workloads | `main` (StatefulSet), primary |
 | Containers | `tailscale` using `tailscale/tailscale` |
