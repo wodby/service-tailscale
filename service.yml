@@ -82,6 +82,8 @@ workloads:
   containers:
   - name: tailscale
     image: tailscale/tailscale
+    resources:
+      preset: nano
     helm:
       resources: resources
       env: envVars
