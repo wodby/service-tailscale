@@ -5,6 +5,7 @@ title: Tailscale
 options:
 - version: '1.94'
   tag: 'v1.94.2'
+  digest: sha256:95e528798bebe75f39b10e74e7051cf51188ee615934f232ba7ad06a3390ffa1
 labels:
 - openclaw
 
